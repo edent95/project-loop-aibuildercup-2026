@@ -1,6 +1,6 @@
 # Project Loop · AI Builder Cup 2026 prototype
 
-[Live prototype](https://project-loop-aibc26-eden.web.app/) · [2:42 demo video](https://project-loop-aibc26-eden.web.app/demo.mp4) · [Pitch deck](docs/project-loop-pitch.pdf)
+[Live prototype](https://project-loop-aibc26-eden.web.app/) · [3:12 demo video](https://project-loop-aibc26-eden.web.app/demo.mp4) · [Pitch deck](docs/project-loop-pitch.pdf)
 
 Project Loop is a public-safe demonstration of the **Future of Work** idea behind Personal Dashboard: work continues on available home machines, important information is filtered against the person's projects, and agent results feed reviewed lessons into the next run. The real dashboard has an away report for scheduled jobs and CI; project-relevant news and finance research; a work profile with cited claims and user corrections; and a visible agent → PR → CI → log → suggestion → knowledge/rule loop.
 
