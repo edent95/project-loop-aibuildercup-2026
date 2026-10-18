@@ -91,7 +91,7 @@ async function analyze(project, entries) {
   const response = await gemini.models.generateContent({
     model,
     contents: buildPrompt(project, entries),
-    config: { temperature: 0.2, responseMimeType: 'application/json', maxOutputTokens: 900 },
+    config: { temperature: 0.2, responseMimeType: 'application/json', maxOutputTokens: 2000 },
   })
   if (!response.text) throw new Error('Gemini returned an empty response')
   return normalizeAnalysis(JSON.parse(response.text), entries)
