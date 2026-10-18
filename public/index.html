@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a25">
+  <meta name="description" content="Project Loop turns project evidence into reviewable action with Gemini.">
+  <title>Project Loop — Evidence to action</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">◈</span><div><strong>PROJECT LOOP</strong><small>Evidence to action</small></div></div>
+      <div class="side-heading">WORKSPACE <span class="dot"></span></div>
+      <nav id="projects" aria-label="Projects"></nav>
+      <div class="side-bottom">
+        <div class="privacy"><span class="privacy-icon">◇</span><div><strong>Sample workspace</strong><p>Only synthetic project data. No personal files or private notes.</p></div></div>
+        <div class="techline">FIREBASE · CLOUD RUN · FIRESTORE · GEMINI</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar"><div class="breadcrumb">WORKSPACE <span>/</span> <b id="breadcrumb-project">PROJECT</b></div><div class="top-right"><span id="mode" class="mode"></span><span class="avatar">PL</span></div></header>
+      <div class="content">
+        <section class="intro"><div><span class="eyebrow">THE WORKFLOW</span><h1>From evidence <em>to action.</em></h1><p>Project updates become grounded AI suggestions. A human decides what enters the task board.</p></div><div class="flow" aria-label="Workflow: log, analyze, review, act"><span>01 <b>LOG</b></span><i>→</i><span>02 <b>ANALYZE</b></span><i>→</i><span>03 <b>REVIEW</b></span><i>→</i><span>04 <b>ACT</b></span></div></section>
+
+        <section class="project-hero"><div class="project-glyph" id="project-glyph" aria-hidden="true">A</div><div><span class="eyebrow">ACTIVE PROJECT</span><h2 id="project-name"></h2><p id="project-goal"></p></div><div class="hero-stats"><div><strong id="entry-count">0</strong><span>UPDATES</span></div><div><strong id="task-count">0</strong><span>APPROVED TASKS</span></div></div></section>
+
+      <div class="columns"><section class="panel evidence-panel"><div class="panel-title"><div><span class="eyebrow">01 / SIGNAL</span><h3>Project evidence</h3></div><span class="small-pill" id="entry-pill">0 entries</span></div><p class="panel-sub">A concise activity trail that can be traced back to its source.</p><div id="entries" class="entries"></div><form id="entry-form" class="add-form"><label for="entry-text">Add a sample update</label><textarea id="entry-text" maxlength="500" minlength="12" required placeholder="Describe a fictional finding, decision, or blocker..."></textarea><div class="form-bottom"><small>Use fictional data. Analysis sends it to Gemini.</small><button type="submit" class="secondary">Add update <span>↗</span></button></div></form></section>
+
+        <section class="panel ai-panel"><div class="panel-title"><div><span class="eyebrow">02 / INTELLIGENCE</span><h3>Gemini analysis</h3></div><span class="spark" aria-hidden="true">✳</span></div><p class="panel-sub">The model reads the selected project’s updates and cites exact entry IDs. Suggestions stay drafts until you approve them.</p><button id="analyze" class="primary">Analyze project evidence <span>✦</span></button><div id="analysis" class="analysis-empty"><div class="analysis-symbol">✳</div><strong>Ready when you are</strong><p>Run an analysis to surface grounded next steps.</p></div></section></div>
+
+        <section class="panel tasks-panel"><div class="panel-title"><div><span class="eyebrow">03 / DECISION</span><h3>Approved tasks</h3></div><span class="small-pill">HUMAN CONTROL</span></div><p class="panel-sub">Only recommendations you approve appear here. Evidence stays attached.</p><div id="tasks" class="tasks"></div></section>
+        <footer>PROJECT LOOP · A focused demonstration of Personal Dashboard’s evidence-to-action workflow · Built for AI Builder Cup 2026</footer>
+      </div>
+    </main>
+  </div>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

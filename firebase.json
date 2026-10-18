@@ -1,0 +1,7 @@
+{
+  "hosting": {
+    "rewrites": [
+      { "source": "**", "run": { "serviceId": "project-loop-demo", "region": "asia-southeast1" } }
+    ]
+  }
+}
