@@ -1,5 +1,4 @@
 node_modules/
 .firebase/
-/public/demo.mp4
 .env
 *.log
