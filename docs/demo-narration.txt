@@ -1,0 +1,17 @@
+Hello, and welcome to Project Loop. Small teams capture product findings, decisions, and blockers every day. But those updates often stay in a log while the next action, its owner, and the reason behind it get lost. A generic AI summary can make the problem worse if it invents progress or creates tasks without a person reviewing them.
+
+Project Loop turns dated evidence into accountable next steps. This is a public-safe prototype based on the project workflow in Personal Dashboard. Every project and update you see here is fictional. No diary, private note, financial record, or local file is connected to this site.
+
+We start in Atlas Access, a sample project about making public service forms easier to use with assistive technology. On the left is a timeline of findings. Each update has a date and an ID. Notice the screen reader confirmation issue recorded as entry A two.
+
+I will add a new sample update. The keyboard trap has been fixed, but the screen reader confirmation still needs another test. When I save it, the update appears in the timeline with a new unique ID. This is the evidence the AI can work with.
+
+Now I choose Analyze project evidence. The browser calls an API on Google Cloud Run. The server sends only the selected project's recent updates to Gemini through Vertex AI. Gemini returns a short brief, risks, and proposed tasks. The server checks that every cited ID exists in this project's evidence. A made-up citation cannot become a displayed suggestion.
+
+The proposed task is still a draft. It has a title, a reason, and an evidence reference. I read it before acting. When I click Approve as task, the server checks that the suggestion came from this session's current analysis, then saves it to the task board. The AI has not silently changed the project plan; the person makes that decision.
+
+I will refresh the page. The approved task remains visible because this visitor's sample workspace is stored in Firestore. Another visitor gets a separate demo session. The sample data is bounded, and the interface clearly explains what is being sent to the model.
+
+The public entry point is Firebase Hosting. Cloud Run serves the API and performs citation checks. Firestore keeps the demo session, and Vertex AI provides Gemini analysis. The source code is public for inspection.
+
+This is the focused evidence-to-action loop we want to improve: capture the finding, ask AI for a grounded proposal, verify its source, and let a human decide what becomes work. Thank you for watching Project Loop.
