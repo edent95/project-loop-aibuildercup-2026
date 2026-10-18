@@ -24,7 +24,22 @@
     <main class="main">
       <header class="topbar"><div class="breadcrumb">WORKSPACE <span>/</span> <b id="breadcrumb-project">PROJECT</b></div><div class="top-right"><span id="mode" class="mode"></span><span class="avatar">PL</span></div></header>
       <div class="content">
-        <section class="intro"><div><span class="eyebrow">THE WORKFLOW</span><h1>From evidence <em>to action.</em></h1><p>Project updates become grounded AI suggestions. A human decides what enters the task board.</p></div><div class="flow" aria-label="Workflow: log, analyze, review, act"><span>01 <b>LOG</b></span><i>→</i><span>02 <b>ANALYZE</b></span><i>→</i><span>03 <b>REVIEW</b></span><i>→</i><span>04 <b>ACT</b></span></div></section>
+        <section class="intro" aria-labelledby="intro-title">
+          <div class="intro-copy">
+            <span class="eyebrow">THE EVIDENCE-TO-ACTION LOOP</span>
+            <h1 id="intro-title">The next move is <em>hiding in your updates.</em></h1>
+            <p>Gemini turns dated project evidence into cited suggestions. You decide what becomes a task.</p>
+            <div class="intro-actions"><a class="hero-cta" href="#analyze">Try the live analysis <span aria-hidden="true">↗</span></a><a class="hero-link" href="/demo.mp4" target="_blank" rel="noopener">Watch the 3-minute demo <span aria-hidden="true">↗</span></a></div>
+          </div>
+          <div class="proof" aria-label="How Project Loop works">
+            <div class="proof-top"><span class="proof-pulse" aria-hidden="true"></span> ONE TRACEABLE DECISION <span class="proof-no">01 / 03</span></div>
+            <div class="proof-step"><span class="proof-index">01 · EVIDENCE</span><strong id="hero-signal">A dated project update</strong><small id="hero-source">Source entry</small></div>
+            <div class="proof-arrow" aria-hidden="true">↓</div>
+            <div class="proof-step proof-ai"><span class="proof-index">02 · GEMINI DRAFT</span><strong>A next step, with a source you can check.</strong></div>
+            <div class="proof-arrow" aria-hidden="true">↓</div>
+            <div class="proof-step proof-human"><span class="proof-index">03 · YOUR DECISION</span><strong>Approve it only when it earns a place on the board.</strong></div>
+          </div>
+        </section>
 
         <section class="project-hero"><div class="project-glyph" id="project-glyph" aria-hidden="true">A</div><div><span class="eyebrow">ACTIVE PROJECT</span><h2 id="project-name"></h2><p id="project-goal"></p></div><div class="hero-stats"><div><strong id="entry-count">0</strong><span>UPDATES</span></div><div><strong id="task-count">0</strong><span>APPROVED TASKS</span></div></div></section>
 
