@@ -20,7 +20,7 @@ Browser → Firebase Hosting → Cloud Run (Node.js)
                               └─ Firestore (isolated demo sessions)
 ```
 
-Firebase Hosting routes HTTPS traffic to the Cloud Run service. Cloud Run serves the interface and API, calls Gemini through Vertex AI using its service identity, and stores only synthetic session data in Firestore. A random, HttpOnly, SameSite session cookie keeps visitors' demo tasks separate. The browser never receives Google Cloud credentials. The model's JSON is treated as untrusted: the server checks lengths and rejects citations that are not present in the selected project's evidence.
+Firebase Hosting serves the interface and routes API requests to Cloud Run. Cloud Run calls Gemini through Vertex AI using its service identity and stores only synthetic session data in Firestore. Firebase Hosting forwards only the `__session` cookie to Cloud Run; the random, HttpOnly, SameSite cookie keeps visitors' demo tasks separate. The browser never receives Google Cloud credentials. The model's JSON is treated as untrusted: the server checks lengths and rejects citations that are not present in the selected project's evidence.
 
 ## Local preview
 
@@ -45,11 +45,10 @@ gcloud run deploy project-loop-demo \
   --allow-unauthenticated \
   --set-env-vars GOOGLE_CLOUD_PROJECT=YOUR_PROJECT_ID,GOOGLE_CLOUD_LOCATION=global,GEMINI_MODEL=gemini-2.5-flash
 
-firebase use YOUR_PROJECT_ID
-firebase deploy --only hosting
+firebase deploy --only hosting --project YOUR_PROJECT_ID
 ```
 
-The Firebase Hosting rewrite in `firebase.json` points to the Cloud Run service in `asia-southeast1`. Check `/api/health`, add an update, run a live Gemini analysis, approve a task, refresh, and verify the task persists before using the public URL in a submission. Keep the prototype running through judging.
+The Firebase Hosting rewrite in `firebase.json` sends `/api/**` to the Cloud Run service in `asia-southeast1`. Check `/api/health`, add an update, run a live Gemini analysis, approve a task, refresh, and verify the task persists before using the public URL in a submission. Keep the prototype running through judging.
 
 ## Limits
 

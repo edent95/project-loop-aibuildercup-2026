@@ -1,3 +1,4 @@
 node_modules/
+/public/demo.mp4
 .env
 *.log

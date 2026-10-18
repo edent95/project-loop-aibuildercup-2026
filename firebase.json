@@ -1,7 +1,8 @@
 {
   "hosting": {
+    "public": "public",
     "rewrites": [
-      { "source": "**", "run": { "serviceId": "project-loop-demo", "region": "asia-southeast1" } }
+      { "source": "/api/**", "run": { "serviceId": "project-loop-demo", "region": "asia-southeast1" } }
     ]
   }
 }
