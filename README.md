@@ -1,8 +1,10 @@
 # Project Loop · AI Builder Cup 2026 prototype
 
-Project Loop is a small, public-safe demonstration derived from the evidence-to-action workflow of Personal Dashboard. It turns dated project updates into Gemini-generated summaries and task suggestions. Each suggestion must cite an exact update ID, and a person must approve it before it becomes a task.
+Project Loop is a public-safe demonstration of the **Future of Work** idea behind Personal Dashboard: work continues on available home machines, important information is filtered against the person's projects, and agent results feed reviewed lessons into the next run. The real dashboard has an away report for scheduled jobs and CI; project-relevant news and finance research; a work profile with cited claims and user corrections; and a visible agent → PR → CI → log → suggestion → knowledge/rule loop.
 
-This repository contains **synthetic examples only**. It has no diary, private notes, health records, identity information, financial data, local file scanning, shell execution, or access to the original Personal Dashboard service.
+The interactive public prototype implements **one slice** of that system. It turns dated team updates into Gemini-generated task suggestions. Each suggestion must cite an exact update ID, and a person must approve it before it becomes a task. The HomeLab, news, finance, profile, and agent-loop cards on the site explain the private system; they are synthetic illustrations, not connected public features.
+
+This repository contains **synthetic examples only**. It has no diary, private notes, health records, identity information, financial data, local file scanning, shell execution, or access to the original Personal Dashboard service. Local jobs run only while their host is available; the public site does not claim uninterrupted execution.
 
 ## The working flow
 
@@ -10,7 +12,7 @@ This repository contains **synthetic examples only**. It has no diary, private n
 2. Add a sample update in your own isolated browser session.
 3. Run Gemini analysis. The server limits context to the selected project's most recent eight updates and validates every returned evidence ID.
 4. Review the draft suggestions. Only the **Approve as task** action writes a task.
-5. The approved task remains in that session's Firestore document with its evidence IDs.
+5. The approved task remains in that session's Firestore document with its evidence IDs. A later analysis includes approved tasks as human decisions so Gemini can avoid repeating them.
 
 ## Google Cloud architecture
 

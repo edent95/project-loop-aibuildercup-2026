@@ -11,6 +11,7 @@ const projectId = process.env.GOOGLE_CLOUD_PROJECT || process.env.GCLOUD_PROJECT
 const region = process.env.GOOGLE_CLOUD_LOCATION || 'global'
 const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash'
 const port = Number(process.env.PORT || 8080)
+const sessionsCollection = 'projectLoopDemoSessionsV2'
 
 if (!local && !projectId) throw new Error('GOOGLE_CLOUD_PROJECT is required outside DEMO_LOCAL mode')
 
@@ -40,7 +41,7 @@ async function readSession(id) {
     if (!memory.has(id)) memory.set(id, initialState())
     return structuredClone(memory.get(id))
   }
-  const ref = firestore.collection('projectLoopDemoSessions').doc(id)
+  const ref = firestore.collection(sessionsCollection).doc(id)
   const snap = await ref.get()
   if (snap.exists) return snap.data()
   const state = initialState()
@@ -50,7 +51,7 @@ async function readSession(id) {
 
 async function writeSession(id, state) {
   if (local) { memory.set(id, structuredClone(state)); return }
-  await firestore.collection('projectLoopDemoSessions').doc(id).set(state)
+  await firestore.collection(sessionsCollection).doc(id).set(state)
 }
 
 function json(res, code, value) {
@@ -79,18 +80,18 @@ function sameOrigin(req) {
   try { return new URL(origin).host === req.headers.host } catch { return false }
 }
 
-async function analyze(project, entries) {
+async function analyze(project, entries, approvedTasks) {
   if (local) {
-    const latest = entries.at(-1)
+    const latest = entries.filter(entry => !approvedTasks.some(task => task.evidenceIds.includes(entry.id))).at(-1)
     return normalizeAnalysis({
-      summary: `${project.name} has ${entries.length} documented updates. The latest update needs an explicit follow-up.`,
-      risks: ['A follow-up can be missed when the update stays only in a log.'],
-      suggestions: [{ title: `Review the latest ${project.name} finding`, reason: 'Assign an owner and confirm the next step before marking this finding complete.', evidenceIds: [latest.id] }],
+      summary: `${project.name} has ${entries.length} documented updates and ${approvedTasks.length} human-approved tasks.`,
+      risks: latest ? ['A follow-up can be missed when the update stays only in a log.'] : [],
+      suggestions: latest ? [{ title: `Review the latest ${project.name} finding`, reason: 'Assign an owner and confirm the next step before marking this finding complete.', evidenceIds: [latest.id] }] : [],
     }, entries)
   }
   const response = await gemini.models.generateContent({
     model,
-    contents: buildPrompt(project, entries),
+    contents: buildPrompt(project, entries, approvedTasks),
     config: { temperature: 0.2, responseMimeType: 'application/json', maxOutputTokens: 2000 },
   })
   if (!response.text) throw new Error('Gemini returned an empty response')
@@ -133,7 +134,7 @@ const server = http.createServer(async (req, res) => {
       const entries = entriesFor(state, project.id)
       state.analyses += 1
       await writeSession(id, state)
-      const result = await analyze(project, entries)
+      const result = await analyze(project, entries, state.tasks.filter(task => task.projectId === project.id))
       state.pendingSuggestions = state.pendingSuggestions.filter(item => item.projectId !== project.id)
       state.pendingSuggestions.push(...result.suggestions.map(item => ({ ...item, projectId: project.id })))
       await writeSession(id, state)

@@ -1,6 +1,6 @@
 const $ = id => document.getElementById(id)
 let workspace
-let active = 'atlas'
+let active = 'flowkit'
 let lastAnalysis
 
 function element(tag, attrs = {}, ...children) {
@@ -53,6 +53,7 @@ function renderEntries() {
 function renderTasks() {
   const tasks = projectTasks()
   $('task-count').textContent = tasks.length
+  $('next-context').textContent = tasks.length ? `Next analysis receives ${tasks.length} human-approved ${tasks.length === 1 ? 'task' : 'tasks'}, including “${tasks.at(-1).title}”, with source IDs.` : 'Approve a task above to carry that decision into the next Gemini analysis.'
   $('tasks').replaceChildren(...(tasks.length ? tasks.map(task => element('article', { class: 'task' },
     element('strong', { text: task.title }),
     element('p', { text: task.reason }),
@@ -101,9 +102,6 @@ function render() {
   $('project-goal').textContent = p.goal
   $('project-glyph').textContent = p.name[0]
   $('project-glyph').style.background = p.color
-  const firstEntry = projectEntries()[0]
-  $('hero-signal').textContent = firstEntry?.text || 'Add an update to reveal a project signal.'
-  $('hero-source').textContent = firstEntry ? `SOURCE ${firstEntry.id.slice(0, 8)} · ${firstEntry.date}` : 'NO SOURCE YET'
   $('mode').textContent = workspace.mode === 'cloud' ? 'LIVE GOOGLE CLOUD' : 'LOCAL AI SIMULATION'
   $('mode').classList.toggle('local', workspace.mode !== 'cloud')
   renderEntries(); renderTasks(); renderAnalysis()
