@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f4">
+  <meta name="description" content="A public-safe look at the Personal Dashboard work loop: overnight automation, relevant knowledge, agent learning, and human decisions.">
+  <title>Project Loop — The work keeps moving</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Project Loop home"><span class="brand-mark" aria-hidden="true">◉</span><strong>Project Loop</strong></a>
+      <nav class="site-nav" aria-label="Page sections"><a href="#system-loop">The system</a><a href="#demo">Live prototype</a></nav>
+      <a class="header-cta" href="#demo">Explore the demo <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main class="main" id="top">
+      <div class="content">
+        <section class="intro" aria-labelledby="intro-title">
+          <div class="intro-copy">
+            <span class="eyebrow">PERSONAL DASHBOARD / FUTURE OF WORK</span>
+            <h1 id="intro-title">You slept.<br><em>The loop kept moving.</em></h1>
+            <p>One person. Multiple machines. A system that returns with outcomes—and the decision only you can make.</p>
+            <div class="intro-actions"><a class="hero-cta" href="#system-loop">See how it works <span aria-hidden="true">↗</span></a><a class="hero-link" href="#demo">Try the live prototype <span aria-hidden="true">→</span></a></div>
+          </div>
+          <div class="proof" aria-label="Illustrative overnight handoff from Personal Dashboard">
+            <div class="proof-top"><span class="proof-pulse" aria-hidden="true"></span> FICTIONAL AWAY REPORT <span class="proof-no">EXAMPLE DATA</span></div>
+            <strong class="proof-headline">3 systems. 1 decision.</strong>
+            <div class="proof-list">
+              <div class="proof-row"><span class="proof-system">M4</span><strong>Host slept</strong><span class="proof-status">Recorded</span></div>
+              <div class="proof-row"><span class="proof-system">M1</span><strong>CI passed; news ranked</strong><span class="proof-status proof-status-done">Done</span></div>
+              <div class="proof-row"><span class="proof-system">Hermes</span><strong>One task is blocked</strong><span class="proof-status proof-status-review">Review</span></div>
+            </div>
+            <p class="proof-caption">You return to outcomes and the item that needs you.</p>
+          </div>
+        </section>
+
+        <section class="system-loop" id="system-loop" aria-labelledby="loop-title">
+          <div class="loop-heading"><div><span class="eyebrow">THE REAL PERSONAL DASHBOARD</span><h2 id="loop-title">One person.<br>One learning system.</h2></div><p>Work continues on available machines. Information becomes relevant. Your corrections shape what the next agent knows.</p></div>
+          <div class="loop-grid">
+            <article class="loop-card"><span>01 / EXECUTE</span><h3>HomeLab keeps watch</h3><p>Scheduled jobs, machine health, agent runs, and CI leave an away report showing what completed and what failed.</p></article>
+            <article class="loop-card"><span>02 / FILTER</span><h3>Information becomes relevant</h3><p>News is matched to active projects. Finance signals are researched against later market data, with a minimum sample before any conclusion.</p></article>
+            <article class="loop-card"><span>03 / LEARN YOU</span><h3>A profile you can correct</h3><p>Work patterns cite facts from project history. You can mark a claim right, wrong, or fix it before a suggestion reaches the agent hub.</p></article>
+            <article class="loop-card"><span>04 / IMPROVE</span><h3>The next agent starts wiser</h3><p>Agent work flows through PR, CI, logs, lessons, and rules. The dashboard also shows where that chain has stopped.</p></article>
+          </div>
+          <figure class="loop-health" aria-labelledby="health-title">
+            <figcaption><span class="eyebrow">LOOP HEALTH / EXAMPLE DATA</span><h3 id="health-title">The costly failure is the handoff nobody noticed.</h3></figcaption>
+            <div class="health-diagram">
+              <div class="health-break-row"><span class="health-node">PR merged</span><span class="health-gap" aria-label="broken link">×</span><span class="health-node health-missing">Log missing</span></div>
+              <div class="health-repair-row"><span>Dashboard flags gap</span><b aria-hidden="true">→</b><span>Human reviews fix</span><b aria-hidden="true">→</b><span>Next agent gets brief</span></div>
+            </div>
+          </figure>
+          <p class="loop-note">Live systems depend on their host being online. This public page never reads the private dashboard, diary, accounts, or investment records.</p>
+        </section>
+
+        <section class="demo" id="demo">
+        <div class="demo-heading"><span class="eyebrow">PUBLIC-SAFE FUNCTIONAL PROTOTYPE</span><h2>Don't take our word for it.<br>Run the loop.</h2><p>Gemini proposes a task from dated team updates. The server checks source IDs; you choose whether it enters the board. Run it again to see your decision in context.</p></div>
+        <div class="workspace-switcher"><span>CHOOSE A FICTIONAL PROJECT</span><nav id="projects" aria-label="Projects"></nav></div>
+        <header class="topbar"><div class="breadcrumb">WORKSPACE <span>/</span> <b id="breadcrumb-project">PROJECT</b></div><div class="top-right"><span id="mode" class="mode"></span><span class="avatar">PL</span></div></header>
+
+        <section class="project-hero"><div class="project-glyph" id="project-glyph" aria-hidden="true">A</div><div><span class="eyebrow">ACTIVE PROJECT</span><h2 id="project-name"></h2><p id="project-goal"></p></div><div class="hero-stats"><div><strong id="entry-count">0</strong><span>UPDATES</span></div><div><strong id="task-count">0</strong><span>APPROVED TASKS</span></div></div></section>
+
+      <div class="columns"><section class="panel evidence-panel"><div class="panel-title"><div><span class="eyebrow">01 / SIGNAL</span><h3>Project evidence</h3></div><span class="small-pill" id="entry-pill">0 entries</span></div><p class="panel-sub">A concise activity trail that can be traced back to its source.</p><div id="entries" class="entries"></div><form id="entry-form" class="add-form"><label for="entry-text">Add a sample update</label><textarea id="entry-text" maxlength="500" minlength="12" required placeholder="Describe a fictional finding, decision, or blocker..."></textarea><div class="form-bottom"><small>Use fictional data. Analysis sends it to Gemini.</small><button type="submit" class="secondary">Add update <span>↗</span></button></div></form></section>
+
+        <section class="panel ai-panel"><div class="panel-title"><div><span class="eyebrow">02 / INTELLIGENCE</span><h3>Gemini analysis</h3></div><span class="spark" aria-hidden="true">✳</span></div><p class="panel-sub">The model reads the selected project’s updates and cites exact entry IDs. Suggestions stay drafts until you approve them.</p><button id="analyze" class="primary">Analyze project evidence <span>✦</span></button><div id="analysis" class="analysis-empty"><div class="analysis-symbol">✳</div><strong>Ready when you are</strong><p>Run an analysis to surface grounded next steps.</p></div></section></div>
+
+        <section class="panel tasks-panel"><div class="panel-title"><div><span class="eyebrow">03 / DECISION</span><h3>Approved tasks</h3></div><span class="small-pill">HUMAN CONTROL</span></div><p class="panel-sub">Only recommendations you approve appear here. Evidence stays attached, and the next analysis includes these decisions.</p><div id="tasks" class="tasks"></div></section>
+        <section class="next-panel" aria-labelledby="next-title"><div><span class="eyebrow">04 / NEXT RUN</span><h3 id="next-title">Your decision becomes context.</h3><p id="next-context">Approve a task above to carry that decision into the next Gemini analysis.</p></div><a href="#analyze">Run the loop again <span aria-hidden="true">↗</span></a></section>
+        <div class="privacy"><span class="privacy-icon" aria-hidden="true">◇</span><div><strong>A safe sample workspace</strong><p>Only fictional project data. No private dashboard, diary, accounts, or local files are connected.</p></div></div>
+        </section>
+        <footer>PROJECT LOOP · A focused demonstration of Personal Dashboard’s evidence-to-action workflow · Built for AI Builder Cup 2026</footer>
+      </div>
+    </main>
+  </div>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
