@@ -27,11 +27,11 @@ if (!local) {
 }
 
 function cookieSession(req, res) {
-  const existing = /(?:^|;\s*)pl_session=([0-9a-f-]{36})(?:;|$)/.exec(req.headers.cookie || '')?.[1]
+  const existing = /(?:^|;\s*)__session=([0-9a-f-]{36})(?:;|$)/.exec(req.headers.cookie || '')?.[1]
   if (existing && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(existing)) return existing
   const id = crypto.randomUUID()
   const secure = req.headers['x-forwarded-proto'] === 'https' || !local
-  res.setHeader('Set-Cookie', `pl_session=${id}; Path=/; HttpOnly; SameSite=Lax; Max-Age=86400${secure ? '; Secure' : ''}`)
+  res.setHeader('Set-Cookie', `__session=${id}; Path=/; HttpOnly; SameSite=Lax; Max-Age=86400${secure ? '; Secure' : ''}`)
   return id
 }
 
